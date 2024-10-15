@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ site.description }}">
+    <title>{{ site.title }}</title>
+    
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <!-- Include the header section -->
+    {% include header.html %}
 
+    <!-- Main content of the homepage -->
+    <main>
+      <h1>Welcome to {{ site.title }}!</h1>
+      <p>This is a simple personal website based on a streamlined version of Al-Folio.</p>
+
+      <!-- Example of including an image -->
+      <img src="{{ '/images/logo.jpeg' | relative_url }}" alt="Site Logo" width="150">
+      
+      <section>
+        <h2>About Me</h2>
+        <p>
+          I'm a [your profession], and this website showcases my work, projects, and blog.
+        </p>
+      </section>
+
+      <section>
+        <h2>Recent Blog Posts</h2>
+        <ul>
+          <!-- Loop through recent posts -->
+          {% for post in site.posts limit:5 %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a> - {{ post.date | date: "%B %d, %Y" }}
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </main>
+
+    <!-- Include the footer section -->
+    {% include footer.html %}
+    
+    <!-- Link to your JS file -->
+    <script src="{{ '/js/script.js' | relative_url }}"></script>
+  </body>
+</html>
