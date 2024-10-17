@@ -1,10 +1,8 @@
-title: Data Scientist and Academic
-author: Aaron Ashok Salve
-email: aaronsalve1@gmail.com
+title: My Simple Site
+author: Your Name
 description: "A simple personal website"
-baseurl: 
-url: https://evlasnoraa.github.io  # the base hostname & protocol for your site
-
-# Build settings
+baseurl: ""  # Leave empty if it's at the root
+url: https://evlasnoraa.github.io"  # Your GitHub username
 markdown: kramdown
-theme: minima  # You can use a default Jekyll theme like "minima"
+theme: minima  # You can change this to any other theme or leave it as is
+
