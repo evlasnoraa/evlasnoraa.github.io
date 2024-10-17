@@ -2,7 +2,7 @@ title: My Simple Site
 author: Your Name
 description: "A simple personal website"
 baseurl: ""  # Leave empty if it's at the root
-url: https://evlasnoraa.github.io"  # Your GitHub username
+url: "https://evlasnoraa.github.io"  # Your GitHub username
 markdown: kramdown
 theme: minima  # You can change this to any other theme or leave it as is
 
