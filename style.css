@@ -1,0 +1,110 @@
+/* Basic styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+  background-color: #333;
+  padding: 10px 0;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+#theme-toggle {
+  background-color: white;
+  color: #333;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#theme-toggle.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+/* About Section Styles */
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-img-large {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.profile-img-large:hover {
+  transform: scale(1.05);
+}
+
+.about-content {
+  flex: 2;
+  padding-left: 40px;
+}
+
+.about-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+/* Footer */
+footer {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+footer.dark-mode {
+  background-color: #333;
+  color: white;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #333;
+  color: white;
+}
