@@ -1,6 +1,6 @@
 /* Basic styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Raleway', sans-serif; /* Update font-family to Raleway */
   margin: 0;
   padding: 0;
   background-color: #fff;
@@ -8,37 +8,78 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* Update the font for headings (if needed) */
+.about-content h1, 
+.about-content h2 {
+  font-family: 'Raleway', sans-serif; /* Ensure headings also use Raleway */
+}
+
+
+/* Add spacing to move the navigation links down */
 header {
-  background-color: #333;
-  padding: 10px 0;
-  color: white;
+  background-color: #f8f8f8; /* Light background color */
+  color: #333;               /* Dark text color */
+  padding: 20px 0;
 }
 
-nav ul {
-  list-style: none;
+/* Dark mode header */
+body.dark-mode header {
+  background-color: #333;     /* Dark background color */
+  color: white;               /* Light text color */
+}
+
+/* Flexbox container for both links and theme icon */
+nav {
   display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
+  justify-content: flex-end;  /* Align links and icon to the right */
+  align-items: center;        /* Vertically center the icon and links */
+  gap: 20px;                  /* Space between the links and the icon */
 }
 
-nav ul li {
-  display: inline;
-  margin: 0 15px;
+/* Padding for navigation links */
+nav ul {
+  display: flex;
+  gap: 30px;                  /* Space between each link */
+  list-style: none;           /* Remove default list styles */
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 10px;
+  padding: 10px 15px;         /* Add padding for clickable area */
+  color: #333;                /* Text color */
+  text-decoration: none;      /* Remove underline */
+  border-radius: 5px;         /* Optional: Make links button-like */
+  transition: background-color 0.3s;
 }
 
-#theme-toggle {
-  background-color: white;
-  color: #333;
-  border: none;
-  padding: 10px;
+body.dark-mode nav ul li a {
+  color: white;               /* Change text color for dark mode */
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Background color on hover */
+}
+
+/* Style for the theme toggle icon (moon/sun) */
+.theme-icon {
+  width: 30px;
+  height: 30px;
   cursor: pointer;
+  margin-right: 20px;         /* Add padding to the right */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+body.light-mode .theme-icon {
+  filter: invert(0%);         /* For light mode (moon visible) */
+}
+
+body.dark-mode .theme-icon {
+  filter: invert(75%);        /* For dark mode (sun visible) */
+}
+
+.theme-icon:hover {
+  transform: scale(1.1);      /* Slight zoom on hover */
 }
 
 #theme-toggle.dark-mode {
@@ -61,6 +102,7 @@ nav ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column; /* Ensure items stack vertically */
 }
 
 .profile-img-large {
@@ -90,6 +132,42 @@ nav ul li a {
   line-height: 1.6;
 }
 
+/* Contact Info Section */
+.contact-info {
+    display: flex;
+    justify-content: center; /* Center align the icons */
+    gap: 20px;               /* Space between each icon */
+    margin-top: 20px;        /* Space above the section */
+}
+
+.contact-info a {
+    font-size: 24px;         /* Size of the icons */
+    color: inherit;          /* Inherit the theme color (light/dark mode) */
+    text-decoration: none;   /* Remove underline */
+    transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+.contact-info a:hover {
+    color: #0077b5;          /* LinkedIn blue as hover effect */
+}
+
+/* Add specific colors for icons if desired */
+.contact-info a[aria-label="LinkedIn"]:hover {
+    color: #0a66c2; /* LinkedIn's official color */
+}
+
+.contact-info a[aria-label="GitHub"]:hover {
+    color: #333;    /* GitHub color */
+}
+
+.contact-info a[aria-label="Phone"]:hover {
+    color: #34B7F1; /* Example for phone icon */
+}
+
+.contact-info a[aria-label="Email"]:hover {
+    color: #BB001B; /* Example for email icon */
+}
+
 /* Footer */
 footer {
   background-color: #f4f4f4;
@@ -107,4 +185,48 @@ footer.dark-mode {
 body.dark-mode {
   background-color: #333;
   color: white;
+}
+
+/* Gallery Styles */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 15px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Resume iframe container */
+.resume-container {
+  display: flex;
+  justify-content: center;   /* Center the iframe */
+  padding: 20px;
+}
+
+.resume-iframe {
+  width: 100%;
+  max-width: 800px;         /* A4 size proportion */
+  height: 1200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Spacing around the main content */
+main {
+  margin: 20px;
 }
