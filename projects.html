@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">About</a></li>
+        <li><a href="Resume.html">Resume</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="photography.html">Photography</a></li>
+      </ul>
+      <img id="theme-toggle" class="theme-icon" src="images/moon-icon.svg" alt="Switch to Dark Mode">
+    </nav>
+  </header>
+
+  <main>
+    <section class="projects-section">
+      <h1>My Projects</h1>
+
+      <!-- Subject Exploration Section -->
+      <div class="project-category">
+        <h2>Subject Exploration</h2>
+        
+        <!-- NLP Exploration project dropdown -->
+        <div class="project-item">
+          <button class="project-title" onclick="toggleProjectDetails(this)">NLP Exploration</button>
+          <div class="project-details">
+            <p>This project involves exploring Natural Language Processing techniques, such as sentiment analysis, text classification, and named entity recognition. I experimented with different Python libraries such as NLTK and SpaCy.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects Section -->
+      <div class="project-category">
+        <h2>Projects</h2>
+
+        <!-- Placeholder for future projects as dropdowns -->
+        <div class="project-item">
+          <button class="project-title" onclick="toggleProjectDetails(this)">[Project Title Here]</button>
+          <div class="project-details">
+            <p>[Project Description Here]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software-Based Projects Section -->
+      <div class="project-category">
+        <h2>Software-Based Projects</h2>
+
+        <!-- Placeholder for future software projects as dropdowns -->
+        <div class="project-item">
+          <button class="project-title" onclick="toggleProjectDetails(this)">[Software Project Title Here]</button>
+          <div class="project-details">
+            <p>[Software Project Description Here]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Aaron Ashok Salve</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
