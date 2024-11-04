@@ -28,3 +28,9 @@ window.addEventListener('DOMContentLoaded', () => {
     themeToggle.alt = 'Switch to Dark Mode';
   }
 });
+
+// Toggle project details display
+function toggleProjectDetails(button) {
+  const details = button.nextElementSibling;
+  details.style.display = details.style.display === "block" ? "none" : "block";
+}
