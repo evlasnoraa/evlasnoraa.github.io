@@ -6,6 +6,7 @@
   <title>Projects</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Add Marked.js -->
 </head>
 <body>
   <header>
@@ -32,9 +33,7 @@
         <!-- NLP Exploration project dropdown -->
         <div class="project-item">
           <button class="project-title" onclick="toggleProjectDetails(this)">NLP Exploration</button>
-          <div class="project-details">
-            <p>This project involves exploring Natural Language Processing techniques, such as sentiment analysis, text classification, and named entity recognition. I experimented with different Python libraries such as NLTK and SpaCy.</p>
-          </div>
+          <div class="project-details" id="nlp-readme">Loading...</div>
         </div>
       </div>
 
@@ -71,5 +70,24 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Fetch README content for NLP Exploration
+    const nlpReadmeUrl = 'https://raw.githubusercontent.com/evlasnoraa/NLP-Exploration/main/README.md';
+
+    fetch(nlpReadmeUrl)
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch README');
+        return response.text();
+      })
+      .then(markdown => {
+        // Convert Markdown to HTML
+        const html = marked.parse(markdown);
+        document.getElementById('nlp-readme').innerHTML = html;
+      })
+      .catch(error => {
+        document.getElementById('nlp-readme').textContent = 'Failed to load README file.';
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
