@@ -221,7 +221,6 @@ main {
 
 /* Projects Section */
 .projects-section {
-  max-width: 100px;
   margin: 0 auto;
   padding: 50px 20px;
 }
@@ -235,7 +234,7 @@ main {
   color: #333;
   border: none;
   padding: 15px;
-  width: 100%;
+  width: 80%;
   display: flex; /* Ensures flexbox is applied */
   align-items: center; /* Aligns items vertically */
   justify-content: space-between; /* Pushes text left, arrow right */
@@ -245,7 +244,9 @@ main {
   font-family:'Raleway', sans-serif;
   cursor: pointer;
   border-radius: 5px;
+  margin:0 auto;
   transition: background-color 0.3s;
+  box-sizing: border-box;
 }
 
 .arrow{
@@ -270,8 +271,14 @@ main {
   border-radius: 5px;
   border: 1px solid #ddd;
   margin-top: 10px;
-  font-size: 1em;
+  align-items: center; /* Aligns items vertically */
+  justify-content: space-between; /* Pushes text left, arrow right */
+  text-align: left;
+  font-size: 1rem;
   color: #555;
+  width: 80%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .skills-table {
