@@ -22,144 +22,35 @@
       <img id="theme-toggle" class="theme-icon" src="/Images/moon-icon.svg" alt="Switch to Dark Mode">
     </nav>
   </header>
-    
-  <main class="projects-section">
-      <div class="project-category">
-          <button class="project-title" onclick="toggleProjectDetails(this)">NLP Exploration <span class="arrow">▼</span></button>
-          <div class="project-details">
-            <p>For this project, I had just one goal in mind — explore different algorithms, tools, and techniques in the world of Natural Language Processing. Hence, at times this project would look chaotic or even a bit redundant. However, at the core of it all was sheer will to just ‘explore’ and ‘try’ new things.</p>
-            <p>For the sake of this exploration, I used a Car Reviews dataset that has two main columns — <span class="code-highlight">Review</span> and <span class="code-highlight">Rating</span>. This makes it a perfect dataset to try out Supervised Machine Learning algorithms for Classification. The <span class="code-highlight">Ratings</span> are scored on a scale of 1 to 5. This allows for multi-class classification and binary classification — if we split the data into ‘negative’ and ‘positive’. But we have 5 different classes. So how do we split them into two classes? That’s something to be explored!</p>
-            <p>This repository explores sentiment analysis of car reviews through comprehensive data analysis and classification tasks. It is structured into three key sections:</p>
-            <ul>
-              <li><strong>Exploratory Data Analysis (EDA)</strong></li>
-              <li><strong>Binary Classification</strong></li>
-              <li><strong>Multi-class Classification</strong></li>
-            </ul>
-            <p>Each folder in the repository corresponds to a specific phase of the project, with each one having its own <span class="code-highlight">README</span> file detailing methodologies, algorithms, and tools used.</p>
-            <p><strong>Scroll down to the end to see a quick summary of the Libraries used!</strong></p>
-            <hr>
-            <h2 id="1-exploratory-data-analysis-eda-">1. Exploratory Data Analysis (EDA)</h2>
-            <p><strong>Goal:</strong> To gain insights into the Car Reviews Dataset, which contains customer reviews rated from 1 to 5.</p>
-            <p><a href="https://github.com/evlasnoraa/NLP-Exploration/tree/main/EDA">Click here for EDA Report and Code</a></p>
-            <h3 id="dataset-characteristics-">Dataset Characteristics:</h3>
-            <ul>
-              <li>Understanding our two columns: <span class="code-highlight">Rating</span> (1-5) and <span class="code-highlight">Review</span> (text data).</li>
-              <li>Visualizing imbalanced class distribution, with <span class="code-highlight">Ratings</span> 4 and 5 dominating.</li>
-            </ul>
-            <h3 id="key-insights-">Key Insights:</h3>
-            <ul>
-              <li>Word frequency analysis highlights terms like <em>drive</em>, <em>comfort</em>, and <em>engine issue</em>.</li>
-              <li>Analysis of review length reveals changes in review length with respect to <span class="code-highlight">Rating</span>.</li>
-              <li>Polarity scores derived using <span class="code-highlight">TextBlob</span> confirm alignment with ratings but highlight challenges in distinguishing mid-range sentiments.</li>
-            </ul>
-            <h3 id="tools-and-techniques-">Tools and Techniques:</h3>
-            <ul>
-              <li><strong>Libraries:</strong> <span class="code-highlight">Python</span> (<span class="code-highlight">Pandas</span>, <span class="code-highlight">Matplotlib</span>, <span class="code-highlight">Nltk</span>, <span class="code-highlight">Scikit-learn</span>, <span class="code-highlight">Seaborn</span>, <span class="code-highlight">WordCloud</span>, <span class="code-highlight">TextBlob</span>).</li>
-              <li><strong>Preprocessing:</strong> Removal of stopwords, stemming, tokenization, and bi-gram extraction for textual analysis.</li>
-              <li><strong>Methodology:</strong> Use of the above-mentioned libraries to develop summary statistics, box plots, bar graphs, and word clouds.</li>
-            </ul>
-            <hr>
-            <h2 id="2-binary-classification">2. Binary Classification</h2>
-            <p><strong>Goal:</strong> To classify reviews as either positive or negative, leveraging the imbalanced dataset effectively.</p>
-            <p><a href="https://github.com/evlasnoraa/NLP-Exploration/tree/main/Binary%20Classification">Click here for Binary Classification Report and Code</a></p>
-            <h3 id="methodology-">Methodology:</h3>
-            <ol>
-              <li>Exploring different ways of splitting data using four different approaches with <span class="code-highlight">Multinomial Naive Bayes</span> as a baseline.</li>
-              <li>Using the best approach on the rest of the algorithms.</li>
-            </ol>
-            <h3 id="algorithms-used-">Algorithms Used:</h3>
-            <ul>
-              <li><strong>Baseline:</strong> <span class="code-highlight">Multinomial Naive Bayes</span> with <span class="code-highlight">TF-IDF</span> vectorization to judge and shortlist one of the four approaches.</li>
-              <li><strong>Linear Models:</strong> <span class="code-highlight">Logistic Regression</span> and <span class="code-highlight">Linear SVMs</span> with <span class="code-highlight">TF-IDF</span> and <span class="code-highlight">Word2Vec</span> vectorization techniques.</li>
-              <li><strong>Tree-based Models:</strong> <span class="code-highlight">Random Forest</span>, <span class="code-highlight">XGBoost</span>, and ensemble methods developed from a combination of all the above algorithms.</li>
-            </ul>
-            <h3 id="tools-techniques-">Tools &amp; Techniques:</h3>
-            <ul>
-              <li><strong>Preprocessing:</strong> Used <span class="code-highlight">Scikit-learn</span>’s <span class="code-highlight">TfidfVectorizer</span> to create <span class="code-highlight">TF-IDF</span> vectors, and the <span class="code-highlight">Gensim</span> library for <span class="code-highlight">Word2Vec</span> embeddings.</li>
-              <li><strong>Model Training:</strong> Used <span class="code-highlight">Scikit-learn</span>’s <span class="code-highlight">MultinomialNB</span>, <span class="code-highlight">LogisticRegression</span>, <span class="code-highlight">LinearSVC</span>, <span class="code-highlight">RandomForestClassifier</span>, <span class="code-highlight">StackingClassifier</span>, and <span class="code-highlight">XGBClassifier</span> to implement the above algorithms.</li>
-              <li><strong>Model Tuning:</strong> <span class="code-highlight">GridSearchCV</span>, Bayesian optimization (<span class="code-highlight">Optuna</span>). Used <span class="code-highlight">Scikit-learn</span>’s <span class="code-highlight">pipeline</span> to streamline the vectorization and model training process into one streamlined process.</li>
-              <li><strong>Model Evaluation:</strong> Used several different metrics like <span class="code-highlight">F1 score</span> (<span class="code-highlight">f1_score</span>), <span class="code-highlight">Accuracy score</span> (<span class="code-highlight">accuracy_score</span>), and <span class="code-highlight">ROC-AUC Score</span> (<span class="code-highlight">roc_auc_score</span>). Also used <span class="code-highlight">Confusion matrix</span> (<span class="code-highlight">confusion_matrix</span>) for more detailed class-wise results.</li>
-            </ul>
-            <hr>
-            <h2 id="3-multi-class-classification">3. Multi-class Classification</h2>
-            <p><strong>Goal:</strong> To classify reviews into five distinct ratings, addressing the complexities of class overlap and subjective sentiment.</p>
-            <p><a href="https://github.com/evlasnoraa/NLP-Exploration/tree/main/Multi-class%20Classification">Click here for Multi-class Classification Report and Code</a></p>
-            <h3 id="challenges-">Challenges:</h3>
-            <ul>
-              <li>Overlapping sentiments in adjacent ratings (e.g., 2 and 3).</li>
-              <li>Imbalanced dataset requiring undersampling for fair evaluation.</li>
-            </ul>
-            <h3 id="approaches-tested-">Approaches Tested:</h3>
-            <ul>
-              <li><strong>Input Types:</strong> <span class="code-highlight">TF-IDF</span>, <span class="code-highlight">Word2Vec</span> embeddings, <span class="code-highlight">BERT</span> embeddings.</li>
-              <li><strong>Models:</strong> <span class="code-highlight">Logistic Regression</span> (One-vs-Rest), <span class="code-highlight">SVMs</span> (One-vs-One), and <span class="code-highlight">XGBoost</span>.</li>
-            </ul>
-            <h3 id="tools-techniques-">Tools &amp; Techniques:</h3>
-            <p>Since this part of the project was built upon Binary Classification, I used all the libraries from before and the following in addition:</p>
-            <ul>
-              <li><strong>Preprocessing:</strong> Used the <span class="code-highlight">Transformers</span> library to get the <span class="code-highlight">BERT</span> model (<span class="code-highlight">BertTokenizer</span>, <span class="code-highlight">BertModel</span>, etc.).</li>
-              <li><strong>Model Training:</strong> Used <span class="code-highlight">Scikit-learn</span>’s <span class="code-highlight">OneVsOneClassifier</span> and <span class="code-highlight">OneVsRestClassifier</span>, which work really well with <span class="code-highlight">Scikit-learn</span>’s other models mentioned above.</li>
-              <li><strong>Model Tuning:</strong> No model tuning done for this section!</li>
-              <li><strong>Model Evaluation:</strong> Since this was multi-class classification, I used <span class="code-highlight">classification_report</span> that gives overall and class-wise precision, recall, and F1 scores. Very helpful for a thorough analysis.</li>
-            </ul>
-            <hr>
-            <h2 id="libraries-summary-">Libraries Summary:</h2>
-            <ul>
-              <li><strong>Data Manipulation and Analysis:</strong>
-                <ul>
-                  <li><span class="code-highlight">Pandas</span>: For handling datasets, preprocessing, and generating summary statistics.</li>
-                  <li><span class="code-highlight">Numpy</span>: For numerical operations.</li>
-                </ul>
-              </li>
-              <li><strong>Visualization:</strong>
-                <ul>
-                  <li><span class="code-highlight">Matplotlib</span> and <span class="code-highlight">Seaborn</span>: For creating box plots, bar graphs, and detailed visualizations.</li>
-                  <li><span class="code-highlight">WordCloud</span>: For generating word clouds to analyze word frequency.</li>
-                </ul>
-              </li>
-              <li><strong>Natural Language Processing:</strong>
-                <ul>
-                  <li><span class="code-highlight">NLTK</span>: For stopword removal, stemming, tokenization, and n-gram extraction.</li>
-                  <li><span class="code-highlight">TextBlob</span>: For sentiment polarity analysis.</li>
-                  <li><span class="code-highlight">Gensim</span>: For generating <span class="code-highlight">Word2Vec</span> embeddings.</li>
-                  <li><span class="code-highlight">Transformers</span>: For working with <span class="code-highlight">BERT</span> embeddings (<span class="code-highlight">BertTokenizer</span>, <span class="code-highlight">BertModel</span>, etc.).</li>
-                </ul>
-              </li>
-              <li><strong>Machine Learning:</strong>
-                <ul>
-                  <li><span class="code-highlight">Scikit-learn</span>: For vectorization (<span class="code-highlight">TfidfVectorizer</span>), implementing machine learning models (<span class="code-highlight">MultinomialNB</span>, <span class="code-highlight">LogisticRegression</span>, <span class="code-highlight">LinearSVC</span>, <span class="code-highlight">RandomForestClassifier</span>, <span class="code-highlight">OneVsOneClassifier</span>, and <span class="code-highlight">OneVsRestClassifier</span>), model pipelines, and evaluation metrics (<span class="code-highlight">f1_score</span>, <span class="code-highlight">accuracy_score</span>, <span class="code-highlight">roc_auc_score</span>, and <span class="code-highlight">confusion_matrix</span>).</li>
-                  <li><span class="code-highlight">XGBoost</span>: For tree-based classification.</li>
-                  <li><span class="code-highlight">Optuna</span>: For Bayesian optimization during model tuning.</li>
-                </ul>
-              </li>
-            </ul>
-            <hr>
-            
-          </div>
+
+
+
+
+    <main class="projects-section">
+
+      <h1>These are my projects!</h1>
+
+      <div class = "projects-grid">
+
+        <a href="nlp-exploration.html" class="project-tile">
+            <h2>NLP Exploration</h2>
+            <p><b>Sept 2024 - Nov 2024</b></p>
+            <p>Explore various NLP techniques using a Car Reviews dataset.</p>
+        </a>
+
+        <a href="forecasting.html" class="project-tile">
+            <h2>Sales Forecasting</h2>
+            <p><b>Jan 2025 - Present</b></p>
+            <p>Using Tableau and SQL to create dashboards and then using advanced forecasting algorithms to forecast future sales on Walmart Sales dataset.</p>
+        </a>
+
+        <a href="https://github.com/evlasnoraa/evlasnoraa.github.io" class="project-tile" target="_blank">
+            <h2>This website!</h2>
+            <p><b>Dec 2024 - Jan 2025 (Constantly updating)</b></p>
+            <p>Click to see the Github documentation for this site! (Opens in a new tab)</p>
+        </a>
+
       </div>
-      
-      <div class="project-category">
-          <button class="project-title" onclick="toggleProjectDetails(this)">Project #1 <span class="arrow">▼</span></button>
-          <div class="project-details">
-              <p><strong>Project #1 Description:</strong> Description goes here.</p>
-              <p><strong>Tools & Techniques:</strong> Tools used here.</p>
-              <p><a href="#" target="_blank">View Code</a></p>
-          </div>
-      </div>
-      
-      <div class="project-category">
-          <button class="project-title" onclick="toggleProjectDetails(this)">Project #2 <span class="arrow">▼</span></button>
-          <div class="project-details">
-              <p><strong>Project #2 Description:</strong> Description goes here.</p>
-              <p><strong>Tools & Techniques:</strong> Tools used here.</p>
-              <p><a href="#" target="_blank">View Code</a></p>
-          </div>
-      </div>
-  </main>
-  <footer>
-    <p>&copy; Aaron Ashok Salve</p>
-  </footer>
-  
-    <script src="script.js"></script>
+    </main>
 </body>
 </html>

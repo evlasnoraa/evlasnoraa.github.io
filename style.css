@@ -229,26 +229,6 @@ main {
   margin-bottom: 30px;
 }
 
-.project-title {
-  background-color: #f8f8f8;
-  color: #333;
-  border: none;
-  padding: 15px;
-  width: 80%;
-  display: flex; /* Ensures flexbox is applied */
-  align-items: center; /* Aligns items vertically */
-  justify-content: space-between; /* Pushes text left, arrow right */
-  text-align: left;
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-family:'Raleway', sans-serif;
-  cursor: pointer;
-  border-radius: 5px;
-  margin:0 auto;
-  transition: background-color 0.3s;
-  box-sizing: border-box;
-}
-
 .arrow{
   margin-left:auto;
 }
@@ -260,12 +240,7 @@ main {
   border-radius: 3px;
 }
 
-.project-title:hover {
-  background-color: #e0e0e0;
-}
-
 .project-details {
-  display: none; /* Initially hidden */
   padding: 15px;
   background-color: #fafafa;
   border-radius: 5px;
@@ -294,4 +269,26 @@ main {
 
 .skills-table td {
   border: none; /* Hide borders */
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.project-tile {
+    display: block;
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-tile:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
