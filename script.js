@@ -53,6 +53,30 @@ function moveIndicator(button) {
 // Initialize: position the indicator under the first button
 moveIndicator(buttons[0]);
 
+function initializeTableauViz() {
+  var containerDiv = document.getElementById("vizContainer");
+  if (!containerDiv) {
+    console.error("Dashboard container not found");
+    return;
+  }
+
+  var url = "https://public.tableau.com/views/Book1_17475606343450/Dashboard1";
+
+  var options = {
+    hideTabs: true,
+    width: "100%",
+    height: (containerDiv.offsetWidth * 0.75) + "px"
+  };
+
+  // Dispose existing viz if present to avoid duplicates
+  if (window.viz) {
+    window.viz.dispose();
+  }
+
+  window.viz = new tableau.Viz(containerDiv, url, options);
+}
+
+
 function loadTabContent(file) {
   fetch(file)
     .then(response => {
@@ -61,11 +85,21 @@ function loadTabContent(file) {
     })
     .then(html => {
       tabContent.innerHTML = html;
+
+      // If the loaded tab is the dashboard, initialize Tableau viz
+      if (file === "Dashboard.html") {
+        if (typeof initializeTableauViz === "function") {
+          initializeTableauViz();
+        } else {
+          console.error("initializeTableauViz function not found.");
+        }
+      }
     })
     .catch(error => {
       tabContent.innerHTML = `<p>Error loading content: ${error.message}</p>`;
     });
 }
+
 
 buttons.forEach((button, index) => {
   button.addEventListener('click', () => {
@@ -80,19 +114,5 @@ buttons.forEach((button, index) => {
   }
 });
 
-var divElement = document.getElementById('viz1747721609581');
-var vizElement = divElement.getElementsByTagName('object')[0];
-if (divElement.offsetWidth > 800) {
-  vizElement.style.width = '100%';
-  vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-} else if (divElement.offsetWidth > 500) {
-  vizElement.style.width = '100%';
-  vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-} else {
-  vizElement.style.width = '100%';
-  vizElement.style.height = '1227px';
-}
 
-var scriptElement = document.createElement('script');
-scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-vizElement.parentNode.insertBefore(scriptElement, vizElement);
+
