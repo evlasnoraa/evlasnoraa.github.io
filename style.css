@@ -24,7 +24,7 @@ header {
 
 /* Dark mode header */
 body.dark-mode header {
-  background-color: #333;     /* Dark background color */
+  background-color: #474747;     /* Dark background color */
   color: white;               /* Light text color */
 }
 
@@ -57,7 +57,11 @@ body.dark-mode nav ul li a {
   color: white;               /* Change text color for dark mode */
 }
 
-nav ul li a:hover {
+body:not(.dark-mode) nav ul li a:hover {
+  background-color: rgba(216, 80, 80, 0.1);    /* Change text color for dark mode */
+}
+
+body.dark-mode nav ul li a:hover {
   background-color: rgba(255, 255, 255, 0.1); /* Background color on hover */
 }
 
@@ -70,7 +74,7 @@ nav ul li a:hover {
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-body.light-mode .theme-icon {
+body:not(.dark-mode) .theme-icon {
   filter: invert(0%);         /* For light mode (moon visible) */
 }
 
@@ -177,10 +181,11 @@ footer {
   text-align: center;
   padding: 20px;
   margin-top: 50px;
+  color: #333;
 }
 
-footer.dark-mode {
-  background-color: #333;
+body.dark-mode footer{
+  background-color:  #474747;;
   color: white;
 }
 
@@ -291,4 +296,62 @@ main {
 .project-tile:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.tabs {
+  display: inline-flex;
+  background: #e0e0e0;
+  border-radius: 30px;
+  padding: 0px;
+  gap: 0px;
+  position: relative;
+}
+
+.tabs button {
+  background: transparent;
+  border: none;
+  padding: 15px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+}
+
+.tabs .active {
+  background: white;
+  position: absolute;
+  top: 5px;
+  height: calc(100% - 10px);
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 200ms;
+  z-index: 0;
+}
+
+/* Tab content section */
+.tab-content {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.dashboard-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+.tableauPlaceholder {
+  width: 100%;
 }
