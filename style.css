@@ -347,6 +347,10 @@ main {
   background: #fafafa;
 }
 
+body.dark-mode .tab-content{
+  background: #333;
+}
+
 .dashboard-container {
   width: 95%;
   max-width: 1250px;
@@ -380,6 +384,10 @@ main {
   box-sizing: border-box;
   width:75%;
   margin: 0 !important;
+}
+
+body.dark-mode #notebook {
+  background-color: white;
 }
 
 /* Optional: Style TOC links */
