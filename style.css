@@ -20,6 +20,7 @@ header {
   background-color: #f8f8f8; /* Light background color */
   color: #333;               /* Dark text color */
   padding: 20px 0;
+  font-size: 1em;
 }
 
 /* Dark mode header */
@@ -134,8 +135,8 @@ body.dark-mode .theme-icon {
   margin-bottom: 20px;
 }
 
-.about-content p {
-  font-size: 1.2em;
+.about-content p, ol {
+  font-size: 1em;
   line-height: 1.6;
 }
 
@@ -407,4 +408,18 @@ main {
   border-right: 1px solid #ddd;
   box-sizing: border-box;
   display: left;
+}
+
+.graphs {
+  display: block;
+  max-width: 75%;
+  margin: 1rem auto;
+}
+figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+figure {
+  margin: 2rem 0;
 }

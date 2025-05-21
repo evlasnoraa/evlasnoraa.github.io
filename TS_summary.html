@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div class = "about-content" id = "summary">
+
+  <h1>Summary</h1>
+
+  <p>In this project, I was working with Walmart weekly sales data for the years 2010, 2011, 2012 and 2013. The data for 2010, 2011 and half of 2012 were part of the “training” set, and the rest of 2012 + 2013 were part of the test set. Due to the lack of real sales data for the “test” set, I had to split the “training” set into training and test datasets. </p>
+
+  <p>The data had very few missing values - mostly concentrated in the same 6 columns. Hence, data preparation wasn’t too difficult. The data has five features - Unemployment, CPI (Inflation), Fuel Price, Temperature and IsHoliday. IsHoliday is a boolean variable that tells us whether a given week is a holiday or not. I converted this boolean variable into another variable - WeeksToHoliday, which counts the number of weeks from the nearest holiday. There are also five more columns for ‘MarkDown’ values - which is a measure of the total value that was marked down for different products during holiday seasons. Which also brings us to the next point - the data is highly seasonal with extremely high spikes in November/December and then a post-holiday slump in January (See Figure 1 Overall sales data).</p>
+  
+  <figure>
+    <img src="/Images/Fig 1.png" alt="Figure 1 - Total Weekly Sales Over Time" class = "graphs"/>
+    <figcaption>Figure 1. Total Weekly Sales Over Time</figcaption>
+  </figure>
+
+  <p>Now, this dataset also had another feature that made it even more exciting - Store Types! All stores were divided into three types based on their store size. When we look at the type-wise sales pattern, we see that store types A and B have identical sales patterns to the overall set. However, the smaller stores - type C stores don’t have strong holiday seasonality. (See Fig. 2.1, 2.2 and 2.3). However, when it comes to trends, store types A and B had zero trends, but type C stores had a strong increasing trend in sales. (See Fig. 3.1, 3.2, 3.3) </p>
+
+  <figure>
+    <img src="/Images/Fig 2.1 Type A Sales.png" alt="Figure 2.1 - Total Weekly Sales for Store Type A Over Time" class = "graphs"/>
+    <figcaption>Figure 2.1 Total Weekly Sales for Store Type A Over Time</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/Images/Fig 2.2 Type B Sales.png" alt="Figure 2.2 - Total Weekly Sales for Store Type B Over Time" class = "graphs"/>
+    <figcaption>Figure 2.2 Total Weekly Sales for Store Type B Over Time</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/Images/Fig 2.3 Type C Sales.png" alt="Figure 2.3 - Total Weekly Sales for Store Type C Over Time" class = "graphs"/>
+    <figcaption>Figure 2.3 Total Weekly Sales for Store Type C Over Time</figcaption>
+  </figure>
+
+  <div class='projects-grid'>
+
+  <figure>
+    <img src="/Images/Fig 3.1 Trend Type A.png" alt="Figure 3.1 - Trend for Store Type A Over Time" class = "graphs"/>
+    <figcaption>Figure 3.1 - Trend for Store Type A Over Time</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/Images/Fig 3.2 Trend Type B.png" alt="Figure 3.2 - Trend for Store Type B Over Time" class = "graphs"/>
+    <figcaption>Figure 3.2 - Trend for Store Type B Over Time</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/Images/Fig 3.3 Trend Type C.png" alt="Figure 3.3 - Trend for Store Type C Over Time" class = "graphs"/>
+    <figcaption>Figure 3.3 - Trend for Store Type C Over Time</figcaption>
+  </figure>
+
+  </div>
+
+  <p>While the criteria for assigning seemed clear, there were two exceptions - Stores 33 and 36. These two were classified as type A but were the size of type C. So I was curious to see if there was perhaps another interesting pattern in the sales. However, even when ranking the sales by stores, we see that stores 33 and 36 are some of the worst stores. This made me want to immediately re-label them to type C. However, I wanted to confirm my observations with strong statistical tests. Hence, I decided to come back to this question later. </p>
+
+  <p>The inconsistencies in store-type assignments made me curious about different patterns in department-wise sales as well. When we rank our Weekly Sales data and look at the top 10 weeks across all stores and departments. Other than the fact that this list is being dominated by two stores of Type B, the list is being absolutely dominated by one department - Department 72. However, despite dominating the top 10 weeks ranking, department 72 has the 4th highest overall sales. This implies that department 72 has a rather erratic sales pattern that flares up during holidays but dies down at other times. This made me wonder - can we split out departments based on their total sales volume AND sales volatility? With this in mind, I categorized the data into five categories - Reliable, Weak, Erratic, Standard and Erratic Declining.</p>
+  
+  <ul>
+    <li><b>Reliable</b> = High sales volume (75 percentile), low volatility and a positive Trend slope</li>
+    <li><b>Weak</b> = Low sales volume (Bottom 25 percentile) and a declining Trend slope</li>
+    <li><b>Erratic Declining</b> = High Volatility and declining Trend slope</li>
+    <li><b>Erratic Increasing</b> = High Volatility but a non-declining Trend slope</li>
+    <li><b>Standard</b> = Standard stores with all-round standard values</li>
+  </ul>
+
+  <p>And immediately the five categories stand out in their own ways. (See Fig. 4). </p>
+
+  <figure>
+    <img src="/Images/Fig 4 Dept Categories.png" alt="Figure 4 - Weekly Sales Pattern for Department Categories" class = "graphs"/>
+    <figcaption>Figure 4 Weekly Sales Pattern for Department Categories</figcaption>
+  </figure>
+
+  <p>With a better understanding of the seasonal pattern of our data, I wanted to understand the nature of our data, so I moved to our next section - Statistical Tests. </p>
+
+  <p>Given that store types A, B and all department categories showed clear seasonality, only type C store was the one that could be stationary. However, the Augmented Dickey-Fuller Test revealed that type C stores are not stationary - perhaps because of the trend that it showed earlier. Given the seasonal nature of our data, SARIMA was a possible algorithm to use. To use SARIMA, we need to figure out p and d values using ACF/PACF values. When I performed the ACF test on raw data, I saw a spike in lag 52 - confirming the seasonal trend we saw in the line graph. Hence, I performed differencing using a time lag of 52 - this gave me the above ACF and PACF. In the new ACF plot, we can see that only lag-1 is significant enough to be considered for any future MA models. However, with the PACF, we can see that after lag-1, there is another random spike at lag-31. This could have potential implications when using the AR model. The ACF and PACF plots for each store type show a different story though. The ACF and PACF plots for Type A resemble our overall data's ACF/PACF plots a little, but it has no significant lag at all for either of them. The ACF/PACF plots for type B resemble our overall data plots even more. However this time, we have a significant correlation at lags 1 and 2 for ACF and lags 1 and 31 for PACF. Type C is on its own - its ACF/PACF plots don't resemble any plots we have seen so far. Both ACF and PACF have several spikes - not particularly confidence-inducing. (Check Phase 3 Step 2 for graphs)</p>
+
+  <p>Next was the Heteroscedasticity test. I used ARCH on the residuals from fitting a Triple Exponential Smoothening model. Before using ARCH, I also made sure that the residuals are not autocorrelated using the Ljung-Box Test. The ARCH test revealed that there is no heteroscedasticity or autocorrelation in overall data, type A stores and type B stores. However, Type C remains inconclusive since the residuals for Type C stores are auto-correlated. Hence, the results of the ARCH test are muddied. Instead of spending more time on trying other models, it is noteworthy to note that Exponential Smoothening is perhaps not a good fit for type C stores.</p>
+
+  <p>Next on the list was the Normality test. It is a key test for all regression-based models. One of the most common assumptions behind models like ARIMA is that the data is normally distributed. Now, even if the data is not naturally normally distributed, it can sometimes be bought into normal form using data transformations. In the below code, I use the Anderson-Darling test to test whether the data is Normal or not. I chose to use this method over the Shapiro-Wilk test because of the restriction over the number of input samples, and over Kolmogorov-Smirnov test because there are no initial assumptions about the distribution of our data. Since we are working with seasonal data, I decided to difference with a lag of 52 for types A and B, and by 1 for type C. The results showed that <b>more than half of our stores are not normal, and all types of stores and department categories are not normal.</b> </p>
+
+  <p>Next on the list was Feature Analysis. I would like to check whether the features are correlated to each other. I will be using the pandas .corr() function that uses Pearson's correlation function by default. By the nature of the Pearson Correlation function's formula, the different ranges of my feature's values will not be an issue. We can see that CPI has a high correlation with both Unemployment and Fuel Price. However, while CPI also has a significant correlation with Weekly Sales, Fuel Price and unemployment don't. WeeksToHoliday also has noticeable correlation with Temperature - but not nearly enough to eliminate it. Especially when it has a higher correlation with sales than Fuel Prices and Unemployment. (See Fig. 5)</p>
+  
+    <figure>
+    <img src="/Images/Fig 5 Correlation.png" alt="Figure 5 - Correlation between our variables" class = "graphs"/>
+    <figcaption>Figure 5. Correlation between our variables</figcaption>
+  </figure>
+
+  <p>Interestingly enough, Temperature has a higher correlation with Types A and B, as compared to Type C. That's probably because temperature represents seasons and the winter season represents Thanksgiving and Christmas/New Year's holidays. And as we know, Types A and B have very high seasonal patterns, which Type C doesn't. </p>
+
+  <p>Earlier, we had discussed the potential of re-labelling stores 36 and 33 as Type C. However, as we can see below, re-labelling has had adverse effects on the correlation between our variables and Weekly Sales for type C stores, but little to no effect on the same for type A stores. (See Fig 6.1 vs 6.2). </p>
+
+  <div class='projects-grid'>
+
+    <figure>
+        <img src="/Images/Fig 6.1 Corr Type C before.png" alt="Figure 6.1 - Type C correlation Before adding Stores 33 and 36" class = "graphs"/>
+        <figcaption>Fig 6.1 - Type C correlation Before adding Stores 33 and 36</figcaption>
+    </figure>
+
+    <figure>
+        <img src="/Images/Fig. 6.2 Corr Type C After.png" alt="Figure 6.2 - Type C correlation After adding Stores 33 and 36" class = "graphs"/>
+        <figcaption>Fig 6.2 - Type C correlation After adding Stores 33 and 36</figcaption>
+    </figure>
+
+  </div>
+
+  <p>This has made me realize that simple observations are not enough. We need to use statistical tests to come to a solid conclusion. One of the best ways to compare a store with our different store types is to use Mahalanobis distance, which accounts for differences in the mean and variance of our groups. Because of the similarity between Mahalanobis and Hotelling T2 test, I spent quite some time using one-sample Hotelling T2 to prove that our stores are not part of Type A stores. However, I later realized that the Hotelling test only works on normalized data. Hence, I stuck with Mahalanobis distance and shifted to permutation test instead. Here is the high-level step-wise breakdown of the permutation test:</p>
+
+  <ol>
+    <li>Compute a test statistic for the original groupings. In our case: Mahalanobis distance between the store and the group.</li>
+    <li>Randomly shuffle the labels (i.e., store group assignments), and recompute the test statistic for each shuffle.</li>
+    <li>Count how often the permuted distances are as extreme as or more extreme than the actual distance.</li>
+    <li>Calculate a p-value based on the proportion of permutations that were more extreme.</li>
+  </ol>
+
+  <p>On following the above steps, we get the following p-values:</p>
+
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th><i>p-values</i></th>
+        <th>Type A</th>
+        <th>Type C</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Store 33</b></td>
+        <td>0.0489</td>
+        <td>0.1924</td>
+      </tr>
+      <tr>
+        <td><b>Store 36</b></td>
+        <td>0.0422</td>
+        <td>0.0680</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    We see that we have enough evidence to conclude that Store 33 is statistically different from stores in Type A, but we don't have enough evidence to say the same about Store 33 when compared to Type C. However, for Store 36, we can conclude with strong evidence that it does not belong to either store type. Let's now recheck our correlation matrix after adjusting Store 33 to Type C. We can now see that re-labelling Store 33 as Type C has minimal effect on the correlation matrix. Hence, I will keep it so. I will keep Store 36 as type 'D', since it doesn't fit any other type and is an anomaly.
+  </p>
+
+  <p>
+    That’s all with the statistical tests. With these results, we can eliminate most forecasting algorithms. We can conclude from the results of the tests above that we can ignore the following algorithms (for the following reasons): ARIMA (seasonal data), Single/Double Exponential Smoothing (seasonal data), GARCH (No Heteroscedasticity detected), Simple Regression techniques (Data non-stationary and non-normal), Breakpoint-sensitive Regression (Data is non-normal). Hence, we are left with the following algorithms:
+    SARIMA, Triple Exponential Smoothing, XGBoost/LGBM, and Prophet (by Facebook).
+  </p>
+
+  <p>
+    The goal of this section is to forecast value for all departments of each store. In order to do so, I would like to figure out the 'best fit' algorithm for all combinations of stores/departments. I used Mean Absolute Percentage Error (MAPE) to judge the best algorithm from above. The SARIMA algorithm along with the values of P, D, Q, and m derived from the ACF and PACF tests gave us a MAPE of 3.55%. Prophet by Facebook gave the exact same result. XGBoost was surprisingly the worst amongst the bunch since it kept overfitting to the training set despite regularizing it heavily. The best algorithm turned out to be Holt-Winter’s Triple Exponential Smoothing (HW-TES) with a MAPE score of 2.55% — winning by a landslide. Moreover, despite my earlier reservations about the use of HW-TES for Type C stores, it ended up outperforming even the preferred XGBoost by another landslide. Hence, in a shocking twist of tales, HW-TES is our go-to algorithm for all different store types and department types. This made the next and final stage of my project much easier.
+  </p>
+
+  <p>
+    As mentioned earlier, the goal was to generate granular forecasting data that can then be grouped in any desired configuration to produce desired forecasts. There was no shortcut to this and it was done through extensive loops. The biggest difficulty was in keeping track of all the values involved. We had about ~3000 store/department combinations to go through, and for each combination, we were training our algorithm on one set of data and then calculating MAPE on another set. Combine that with missing dates, it was a lot of logical looping — but we made it! Rather than printing the results here, you can check it out on the <strong>Tableau Dashboard</strong>! Choose any combination of Store Type or Department and the “Forecast vs Actual” will give you a graph depicting the actual values vs my Forecasted values. It’s showing those values by combining the values for each store/department within your selection.
+  </p>
+
+  <!-- Continue adding remaining text exactly as is, breaking into paragraphs where appropriate -->
+</div>
+</body>
+<script src="script.js"></script>
+</html>
